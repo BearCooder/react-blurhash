@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { hot } from 'react-hot-loader/root';
 import styled from 'styled-components';
 import { isBlurhashValid } from 'blurhash';
 
@@ -152,7 +151,7 @@ const BlurhashDemo = ({ hash }: { hash: string }) => {
             max="1024"
             step="8"
             value={size}
-            onChange={e => setSize(Number(e.target.value))}
+            onChange={(e) => setSize(Number(e.target.value))}
           />
         </Setting>
 
@@ -162,7 +161,7 @@ const BlurhashDemo = ({ hash }: { hash: string }) => {
             max="128"
             step="1"
             value={resolution}
-            onChange={e => setResolution(Number(e.target.value))}
+            onChange={(e) => setResolution(Number(e.target.value))}
           />
         </Setting>
 
@@ -172,7 +171,7 @@ const BlurhashDemo = ({ hash }: { hash: string }) => {
             max="20"
             step="1"
             value={punch}
-            onChange={e => setPunch(Number(e.target.value))}
+            onChange={(e) => setPunch(Number(e.target.value))}
           />
         </Setting>
       </SettingsContainer>
@@ -204,7 +203,7 @@ const BlurhashCanvasDemo = ({ hash }: { hash: string }) => {
             max="1024"
             step="8"
             value={size}
-            onChange={e => setSize(Number(e.target.value))}
+            onChange={(e) => setSize(Number(e.target.value))}
           />
         </Setting>
 
@@ -214,7 +213,7 @@ const BlurhashCanvasDemo = ({ hash }: { hash: string }) => {
             max="20"
             step="1"
             value={punch}
-            onChange={e => setPunch(Number(e.target.value))}
+            onChange={(e) => setPunch(Number(e.target.value))}
           />
         </Setting>
       </SettingsContainer>
@@ -242,7 +241,7 @@ const Demo = () => {
         <StyledRadioInput
           label="Blurhash string"
           input={{
-            onChange: e => setMode(e.target.value as 'hash'),
+            onChange: (e) => setMode(e.target.value as 'hash'),
             value: 'hash',
             checked: mode === 'hash',
           }}
@@ -250,7 +249,7 @@ const Demo = () => {
         <StyledRadioInput
           label="Encode image"
           input={{
-            onChange: e => setMode(e.target.value as 'image'),
+            onChange: (e) => setMode(e.target.value as 'image'),
             value: 'image',
             checked: mode === 'image',
           }}
@@ -258,13 +257,13 @@ const Demo = () => {
       </ModeSelect>
 
       {mode === 'hash' && (
-        <TextInput value={hashInput} onChange={e => setHashInput(e.target.value.trim())} />
+        <TextInput value={hashInput} onChange={(e) => setHashInput(e.target.value.trim())} />
       )}
 
       {mode === 'image' && (
         <>
           <Hint>Note: encoding is done in the browser only (no server involved)!</Hint>
-          <BlurhashImageEncoder onChange={hash => setEncodedHash(hash)} value={encodedHash} />
+          <BlurhashImageEncoder onChange={(hash) => setEncodedHash(hash)} value={encodedHash} />
         </>
       )}
 
@@ -312,4 +311,4 @@ const Demo = () => {
   );
 };
 
-export default hot(Demo);
+export default Demo;

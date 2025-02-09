@@ -3,9 +3,9 @@ import { decode } from 'blurhash';
 
 export type Props = React.CanvasHTMLAttributes<HTMLCanvasElement> & {
   hash: string;
-  height?: number;
-  punch?: number;
-  width?: number;
+  height: number | undefined;
+  punch: number | undefined;
+  width: number | undefined;
 };
 
 export default class BlurhashCanvas extends React.PureComponent<Props> {
@@ -14,7 +14,7 @@ export default class BlurhashCanvas extends React.PureComponent<Props> {
     width: 128,
   };
 
-  canvas: HTMLCanvasElement = null;
+  canvas: HTMLCanvasElement | null = null;
 
   componentDidUpdate() {
     this.draw();
@@ -29,12 +29,14 @@ export default class BlurhashCanvas extends React.PureComponent<Props> {
     const { hash, height, punch, width } = this.props;
 
     if (this.canvas) {
-      const pixels = decode(hash, width, height, punch);
+      const pixels = decode(hash, width ?? 128, height ?? 128, punch ?? 1);
 
       const ctx = this.canvas.getContext('2d');
-      const imageData = ctx.createImageData(width, height);
-      imageData.data.set(pixels);
-      ctx.putImageData(imageData, 0, 0);
+      if (ctx) {
+        const imageData = ctx.createImageData(width ?? 128, height ?? 128);
+        imageData.data.set(pixels);
+        ctx.putImageData(imageData, 0, 0);
+      }
     }
   };
 
