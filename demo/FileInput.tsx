@@ -58,9 +58,9 @@ const FileInput: React.FunctionComponent<Props> = ({
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { files } = event.currentTarget;
-      const newFile = files[0];
+      const newFile = files ? files[0] : undefined;
 
-      if (newFile !== file) {
+      if (newFile && newFile !== file) {
         setFile(newFile);
         onChange(newFile);
       }

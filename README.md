@@ -78,3 +78,17 @@ import { BlurhashCanvas } from "react-blurhash";
 ## Browser support
 
 Blurhash depends on `Uint8ClampedArray`, which is supported on all mainstream browsers and >=IE11.
+
+## Development
+
+### Build
+
+```sh
+npm run build
+```
+
+### Start Development Server
+
+```sh
+npm run dev
+```

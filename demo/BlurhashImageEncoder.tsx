@@ -101,6 +101,9 @@ const getImageData = (image: HTMLImageElement, resolutionX: number, resolutionY:
   canvas.width = resolutionX;
   canvas.height = resolutionY;
   const context = canvas.getContext('2d');
+  if (!context) {
+    throw new Error('Failed to get 2D context');
+  }
   context.drawImage(image, 0, 0, resolutionX, resolutionY);
   return context.getImageData(0, 0, resolutionX, resolutionY);
 };
@@ -127,7 +130,11 @@ const BlurhashImageEncoder: React.FunctionComponent<Props> = ({ onChange }) => {
     [data, componentX, componentY],
   );
 
-  useEffect(() => onChange(blurhash), [blurhash]);
+  useEffect(() => {
+    if (blurhash) {
+      onChange(blurhash);
+    }
+  }, [blurhash]);
 
   const handleFileChange = useCallback((file: File) => {
     const imageUrl = URL.createObjectURL(file);
@@ -162,7 +169,7 @@ const BlurhashImageEncoder: React.FunctionComponent<Props> = ({ onChange }) => {
             min="1"
             max="9"
             value={componentX}
-            onChange={e => setComponentX(Number(e.target.value))}
+            onChange={(e) => setComponentX(Number(e.target.value))}
           />
         </Setting>
 
@@ -171,7 +178,7 @@ const BlurhashImageEncoder: React.FunctionComponent<Props> = ({ onChange }) => {
             min="1"
             max="9"
             value={componentY}
-            onChange={e => setComponentY(Number(e.target.value))}
+            onChange={(e) => setComponentY(Number(e.target.value))}
           />
         </Setting>
       </Settings>

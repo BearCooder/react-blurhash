@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": ".",
-    "module": "commonjs",
+    "module": "esnext",
     "declaration": false,
     "allowJs": true,
     "esModuleInterop": true

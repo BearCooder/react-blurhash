@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0
+
+- Switch to Vite for bundling
+- Remove `tsup`
+- Update dependencies
+- Drop support for React v15 & v16
+
 ## 0.3.0
 
 - Use `tsup` for bundling

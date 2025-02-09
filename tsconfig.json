@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "target": "es6",
-    "lib": ["esnext", "dom"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
     "outDir": "./lib",
     "sourceMap": true,
